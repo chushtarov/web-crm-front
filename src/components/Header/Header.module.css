@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&family=Roboto:wght@400;700&display=swap");
+
+* {
+  font-family: Roboto;
+}
+
+.header {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  justify-content: space-between;
+  padding: 0 30px;
+  background: #003399;
+}
+.logo img {
+  width: 130px;
+}
+.nav__ul {
+  display: flex;
+  width: 560px;
+  justify-content: space-between;
+}
+.nav__ul li {
+  list-style-type: none;
+}
+.ul__link {
+  text-decoration: none;
+  color: white;
+
+  font-size: 18px;
+}
+.ul__menu {
+  cursor: pointer;
+  font-size: 18px;
+  border: none;
+  background: transparent;
+  color: white;
+}
+.prof {
+
+  position: relative;
+}
+.prof__ul {
+  position: absolute;
+  border: 1px solid #003399;
+  box-shadow: 0px 2px 10px 2px rgba(34, 60, 80, 0.2);
+
+  top: 50px;
+  background: white;
+  right: -26px;
+}
+.prof__ul button {
+  width: 130px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  height: 30px;
+  background: transparent;
+  border: none;
+
+}
+
+
+.prof__ul button:hover{
+    background-color: rgba(128, 128, 128, 0.452);
+}
+
+.prof__btn {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: white;
+}
+.icon{
+    margin-right: 6px;
+}
+.ul__menu{
+  position: relative;
+}
+.menu{
+    position: absolute;
+    border: 1px solid #003399;
+    box-shadow: 0px 2px 10px 2px rgba(34, 60, 80, 0.2);
+    top: 62px;
+    background: white;
+    right: 890px;
+}
+.menu button{
+    width: 130px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 30px;
+    background: transparent;
+    border: none;
+}
