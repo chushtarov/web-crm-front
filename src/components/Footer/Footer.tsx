@@ -63,8 +63,7 @@ const Footer = () => {
             <a className={style.email} href=''>8-800-700-97-10</a>
           </div>
           </div>
-        </div> 
-        
+        </div>        
       </div>     
     </div>
   )
