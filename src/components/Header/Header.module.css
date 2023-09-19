@@ -6,6 +6,11 @@
 
 .header {
   display: flex;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
   height: 60px;
   align-items: center;
   border-bottom: 1px solid gray;
@@ -27,8 +32,14 @@
 .ul__link {
   text-decoration: none;
   color: white;
-
   font-size: 18px;
+  transition: .4s;
+}
+.ul__link:hover {
+  color: rgb(66, 66, 131);
+}
+.ul__link:focus {
+  color: rgb(66, 66, 131);
 }
 .ul__menu {
   cursor: pointer;
@@ -38,8 +49,9 @@
   color: white;
 }
 .prof {
-
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .prof__ul {
   position: absolute;
@@ -59,12 +71,12 @@
   height: 30px;
   background: transparent;
   border: none;
-
 }
 
-
-.prof__ul button:hover{
-    background-color: rgba(128, 128, 128, 0.452);
+.prof__ul button:hover {
+  background-color: rgba(128, 128, 128, 0.452);
+  display: flex;
+  align-items: center;
 }
 
 .prof__btn {
@@ -74,27 +86,65 @@
   font-size: 28px;
   color: white;
 }
-.icon{
-    margin-right: 6px;
+.icon {
+  margin-right: 6px;
 }
-.ul__menu{
+.ul__menu {
   position: relative;
 }
-.menu{
-    position: absolute;
-    border: 1px solid #003399;
-    box-shadow: 0px 2px 10px 2px rgba(34, 60, 80, 0.2);
-    top: 62px;
-    background: white;
-    right: 890px;
+.menu {
+  position: absolute;
+  border: 1px solid #003399;
+  box-shadow: 0px 2px 10px 2px rgba(34, 60, 80, 0.2);
+  top: 62px;
+  background: white;
+  right: 890px;
 }
-.menu button{
-    width: 130px;
-    font-size: 16px;
+/* Адаптив */
+
+@media screen and (max-width: 800px) {
+  .logo {
+    display: none;
+    }
+}
+
+@media screen and (max-width: 690px) {
+  .nav {
+    position: fixed;
+    left: 0;
+    top: 59px;
     display: flex;
-    align-items: center;
-    padding: 10px;
-    height: 30px;
+    flex-direction: column;
+    background-color: #003399;
+    width: 180px;
+    height: 100%;
+    opacity: 0.95;
+    transition: 0.4s;
+    box-shadow: none;
+  }
+  .header {
+    box-shadow: 0 0 0 1000px rgb(0, 0, 0, .3);
+  }
+  .logo {
+    display: flex;
+  }
+  .open_nav {
+    width: 24px;
+    height: 24px;
     background: transparent;
-    border: none;
+    margin-left: auto;
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+  .nav__ul {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-left: 40px;
+    gap: 30px;
+  }
+  .ul__link {
+    color: #fff;
+  }
 }
