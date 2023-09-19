@@ -5,7 +5,6 @@ type User = {
   _id: string;
   login: string;
   password: string;
-  result: number;
 };
 
 type StateUsers = {

@@ -1,10 +1,10 @@
-import {combineReducers} from 'redux'
-import signUpSlace from './signUpSlace'
-import usersSlice from './usersSlice'
+import { combineReducers } from "redux";
+import signInSlice from "./signInSlice";
+import usersSlice from "./usersSlice";
 
 const rootReducer = combineReducers({
-    signUpSlace: signUpSlace,
-    usersSlice: usersSlice
-})
+    signInSlice: signInSlice,
+  usersSlice: usersSlice,
+});
 
 export default rootReducer;
