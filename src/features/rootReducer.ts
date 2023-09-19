@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import signInSlice from "./signInSlice";
+import signInSlice from "./signInSlace";
 import usersSlice from "./usersSlice";
 
 const rootReducer = combineReducers({
-    signInSlice: signInSlice,
+  signInSlice: signInSlice,
   usersSlice: usersSlice,
 });
 
