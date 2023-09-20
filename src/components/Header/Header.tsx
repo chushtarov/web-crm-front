@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.logo}>
-        <img src={logo} alt="" />
+       <Link to={'/'}> <img src={logo} alt="" /></Link>
       </div>
       <div className={style.nav}>
         <ul className={style.nav__ul}>
@@ -41,7 +41,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/"}>
+            <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
           </li>
