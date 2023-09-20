@@ -61,7 +61,8 @@ console.log(userOne);
   return (
     <header className={style.header}>
       <div className={style.logo}>
-        <Link to={'/'}><img src={logo} alt="" /></Link>
+       <Link to={'/'}> <img src={logo} alt="" /></Link>
+
       </div>
       <div className={style.nav}>
         <ul className={style.nav__ul}>
@@ -76,7 +77,7 @@ console.log(userOne);
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/"}>
+            <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
           </li>
