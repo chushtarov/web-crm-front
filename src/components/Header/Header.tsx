@@ -10,10 +10,19 @@ import { FaInfo } from "react-icons/fa";
 import { MdAssignmentAdd } from "react-icons/md";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { AppDispatch, RootState } from "../../app/store";
+import { oneUser } from "../../features/usersSlice";
 
 const Header = () => {
 const token = useSelector((state: RootState) => state.signInSlice.token)
+const userOne = useSelector((state:RootState) => state.usersSlice.oneUser)
 const dispatch = useDispatch<AppDispatch>()
+
+useEffect(() => {
+  dispatch(oneUser())
+}, [])
+
+console.log(userOne);
+
   const [openMenu, setOpenMenu] = useState(false);
   const [openProf, setOpenProf] = useState(false);
   const menuRef = useRef(null);
@@ -45,7 +54,8 @@ const dispatch = useDispatch<AppDispatch>()
   };
 
   const handleExit = () => {
-    
+    localStorage.removeItem("token")
+    window.location.reload()
   }
 
   return (
@@ -89,12 +99,13 @@ const dispatch = useDispatch<AppDispatch>()
         ) : null}
       </div>
       <div className={style.prof}>
+        {token ? <div className={style.log__user}>{userOne.login}</div> : ""}
         <button onClick={handleClickProf} className={style.prof__btn } ref={profRef}>
           <CgProfile />
         </button>
         {openProf ? (
           <div className={style.prof__ul}>
-            {!token ? <><button>
+            {token ? <><button>
               <RiProfileLine className={style.icon} /> Профиль
             </button>
             <button onClick={handleExit}>

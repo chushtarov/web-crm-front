@@ -76,9 +76,7 @@ a {
     color: #231f1fcc;
     font-weight: 700;
 }
-.footer_bottom {
-    /* background-color: #FFF; */
-}
+
 .footer_bottom_content {
     display: flex;
     justify-content: space-between;

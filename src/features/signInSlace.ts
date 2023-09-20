@@ -5,6 +5,10 @@ type User = {
   _id: string;
   login: string;
   password: string;
+  isAdmin: boolean;
+  isMentor: boolean;
+  isStudent: boolean;
+  result: number;
 };
 
 type stateApp = {
@@ -19,6 +23,10 @@ const initialState: stateApp = {
     _id: "",
     login: "",
     password: "",
+    isAdmin: false,
+    isMentor: false,
+    isStudent: false,
+    result: 0
   },
   error: null,
   signIn: false,
@@ -31,7 +39,7 @@ export const authSignIn = createAsyncThunk<
   { rejectValue: unknown; state: RootState }
 >("auth/signin", async ({ login, password }, thunkAPI) => {
   try {
-    const res = await fetch("http://localhost:3000/login", {
+    const res = await fetch("http://localhost:3000/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

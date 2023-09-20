@@ -20,7 +20,13 @@ const SignIn = () => {
 
   const handleSingUp = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(authSignIn({ _id: "", login, password }));
+    dispatch(authSignIn({
+      _id: "", login, password,
+      isAdmin: false,
+      isMentor: false,
+      isStudent: false,
+      result: 0
+    }));
   };
 
   if (token) {
