@@ -76,9 +76,7 @@ a {
     color: #231f1fcc;
     font-weight: 700;
 }
-.footer_bottom {
-    /* background-color: #FFF; */
-}
+
 .footer_bottom_content {
     display: flex;
     justify-content: space-between;
@@ -104,6 +102,7 @@ a {
     color: rgb(23, 23, 158);
 }
 .footer_email {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     font-weight: 700;
@@ -120,6 +119,7 @@ a {
 .email:hover {
     color: rgb(23, 23, 158);;
 }
+footer_email
 
 /* Адаптив */
 @media screen and (max-width: 985px) {

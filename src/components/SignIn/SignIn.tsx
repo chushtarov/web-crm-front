@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authSignIn } from "../../features/signInSlice";
+import { authSignIn } from "../../features/signInSlace";
 import { AppDispatch, RootState } from "../../app/store";
 import style from "./SignIn.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,7 +20,13 @@ const SignIn = () => {
 
   const handleSingUp = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(authSignIn({ _id: "", login, password }));
+    dispatch(authSignIn({
+      _id: "", login, password,
+      isAdmin: false,
+      isMentor: false,
+      isStudent: false,
+      result: 0
+    }));
   };
 
   if (token) {
@@ -73,7 +79,6 @@ const SignIn = () => {
               Login
             </button>
           </form>
-       
         </div>
       </div>
     </div>
