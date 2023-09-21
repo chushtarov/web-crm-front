@@ -14,7 +14,7 @@ const CssEditor = ({css, setCss}) => {
     onChange={value => setCss(value)}
     theme="tomorrow"
     name="editor_css"
-    fontSize={16}
+    fontSize={20}
     height={"100%"}
     width={"100%"}
     showPrintMargin={true}

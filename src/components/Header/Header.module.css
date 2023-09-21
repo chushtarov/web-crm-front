@@ -17,6 +17,7 @@
   justify-content: space-between;
   padding: 30px 30px;
   background: #003399;
+  z-index: 3;
 }
 .logo img {
   width: 130px;

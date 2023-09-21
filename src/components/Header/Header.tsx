@@ -13,8 +13,8 @@ import { AppDispatch, RootState } from "../../app/store";
 import { oneUser } from "../../features/usersSlice";
 
 const Header = () => {
-  const token = useSelector((state: RootState) => state.signInSlice.token);
-  const userOne = useSelector((state: RootState) => state.usersSlice.oneUser);
+  const token = useSelector((state: RootState) => state.reducer.signInSlice.token);
+  const userOne = useSelector((state: RootState) => state.reducer.usersSlice.oneUser);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -59,6 +59,7 @@ const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.logo}>
+
         <Link to={"/"}>
           <img src={logo} alt="" />
         </Link>
@@ -97,7 +98,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/"}>
+            <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
           </li>
