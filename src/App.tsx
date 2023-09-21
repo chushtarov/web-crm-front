@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Auth from './components/Auth/Auth'
 import Contact from "./components/Contact/Contact";
 import Students from "./components/Students/Students";
+import Slider from "./components/Slider/Slider";
 import Footer from './components/Footer/Footer';
 
 import Info from "./components/Info/Info";
@@ -19,6 +20,7 @@ function App() {
     <Header />
     {token ? <Auth/> : null}
       <Routes>
+        <Route path={"/"} element={<Slider/>} />
         <Route path={"/login"} element={<SignIn />} />
         <Route path={"/student"} element={<Students/>} />
         <Route path={"/info"} element={<Info />} />

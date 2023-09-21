@@ -1,0 +1,13 @@
+.slider {
+   max-width: 970px;
+   margin: 0 auto;
+   margin-top: 30px;
+   margin-bottom: 30px;
+   border-radius: 10px;
+}
+.img_slider {
+   border-radius: 10px;
+   max-width: 500px;
+   max-height: 550px;
+   background-size: cover;
+}
