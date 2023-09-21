@@ -14,7 +14,10 @@ const initialState:stateProp = {
   card: []
 };
 
-export const fetchCard = createAsyncThunk("card/fetch", async (_, thunkAPI) => {
+export const fetchCard = createAsyncThunk<
+card[],
+{ rejectValue: unknown; state: RootState }
+>("card/fetch", async (_, thunkAPI) => {
   try {
     const res = await fetch("http://localhost:3000/card");
     const logRes = await res.json();

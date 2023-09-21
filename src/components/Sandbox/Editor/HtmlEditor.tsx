@@ -14,7 +14,7 @@ const HtmlEditor = ({html, setHtml}) => {
     onChange={value => setHtml(value)}
     theme="tomorrow"
     name="editor_html"
-    fontSize={24}
+    fontSize={20}
     height={"100%"}
     width={"100%"}
     showPrintMargin={false}
