@@ -73,6 +73,23 @@ const Header = () => {
             >
               Экзамен
             </button>
+            {openMenu ? (
+          <div className={style.menu}>
+            <button>
+              <FaInfo className={style.icon} />
+              <Link className={style.link__color} to={"info"}>
+                Информация
+              </Link>
+            </button>
+            <button>
+              <MdAssignmentAdd className={style.icon} />
+              <Link className={style.link__color} to={"form"}>
+                {" "}
+                Записаться
+              </Link>
+            </button>
+          </div>
+        ) : null}
           </li>
           <li>
             <Link className={style.ul__link} to={"/"}>
@@ -95,23 +112,7 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        {openMenu ? (
-          <div className={style.menu}>
-            <button>
-              <FaInfo className={style.icon} />
-              <Link className={style.link__color} to={"info"}>
-                Информация
-              </Link>
-            </button>
-            <button>
-              <MdAssignmentAdd className={style.icon} />
-              <Link className={style.link__color} to={"form"}>
-                {" "}
-                Записаться
-              </Link>
-            </button>
-          </div>
-        ) : null}
+        
       </div>
       <div className={style.prof}>
         {token ? <div className={style.log__user}>{userOne.login}</div> : ""}
