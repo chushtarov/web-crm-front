@@ -75,7 +75,7 @@
   color: white;
   font-size: 18px;
   padding-right: 10px;
-  padding-bottom: 5px;
+ 
 }
 .prof__ul button {
   width: 130px;
@@ -103,6 +103,7 @@
   cursor: pointer;
   background: transparent;
   border: none;
+  height: 28px;
   font-size: 28px;
   color: white;
 }

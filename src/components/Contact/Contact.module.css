@@ -1,0 +1,273 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #eeeeee;
+}
+img {
+  max-width: 100%;
+  height: 100%;
+}
+ul li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.contact {
+  padding: 150px 0 0 0;
+}
+.contact_container {
+  max-width: 970px;
+  margin: 0 auto;
+}
+.map_content {
+  display: flex;
+  align-items: center;
+}
+.contact_map {
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid #b0b0b0;
+}
+.contact_h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+.contacts {
+  margin-left: 56px;
+}
+.adress {
+  display: flex;
+  align-items: center;
+}
+.contacts_two {
+  margin-top: 50px;
+}
+.hour_span {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  margin-right: 12px;
+  color: rgb(23, 23, 158);
+}
+.span_map {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  margin-right: 12px;
+  color: rgb(23, 23, 158);
+}
+.hors_work {
+  display: flex;
+  align-items: center;
+}
+.text_contact_one {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #231f1fcc;
+  font-weight: 700;
+}
+.text_contact_two {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #231f1fcc;
+  font-weight: 700;
+}
+
+.contact_bottom_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 90px;
+  padding: 30px 0;
+}
+.contact_logo {
+  max-width: 150px;
+  max-height: 150px;
+}
+.contact_ul {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.contact_nav {
+  font-weight: 700;
+  color: black;
+  transition: 0.4s;
+}
+.contact_nav:hover {
+  color: rgb(23, 23, 158);
+}
+.contact_email {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  color: black;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.contact_email:hover {
+  color: rgb(23, 23, 158);
+}
+.email {
+  color: black;
+}
+.email:hover {
+  color: rgb(23, 23, 158);
+}
+contact_email
+
+/* Адаптив */
+@media screen and (max-width: 985px) {
+  .contact_logo {
+    width: 200px;
+    height: 200px;
+    margin-left: 20px;
+  }
+}
+@media screen and (max-width: 917px) {
+  .contact_nav {
+    font-size: 14px;
+  }
+  .contact_ul {
+    gap: 30px;
+  }
+}
+@media screen and (max-width: 809px) {
+  .contact_nav {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 717px) {
+  .contact_logo {
+    /* display: none; */
+  }
+  .contact_ul {
+    display: flex;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 780px) {
+  .contact_bottom_content {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 755px) {
+  .map_content {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    text-align: center;
+  }
+  .adress {
+    display: flex;
+    flex-direction: column;
+  }
+  .hors_work {
+    display: flex;
+    flex-direction: column;
+  }
+  .span_map {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .map_content {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+  }
+  .contact_nav {
+    font-size: 18px;
+  }
+  .contact_ul {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-left: 20px;
+  }
+  .contact_email {
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  .contact_logo {
+    /* margin-bottom: 30px; */
+    margin-left: 20px;
+  }
+  .contact_bottom_content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+  .contact_h1 {
+    margin-right: 35px;
+    font-size: 50px;
+    margin-top: 20px;
+  }
+  .adress {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 20px;
+  }
+  .hour_h2 {
+    margin-right: 20px;
+  }
+  .hour_span {
+    margin-right: 25px;
+  }
+  .hors_work {
+    display: flex;
+    flex-direction: column;
+  }
+  .span_map {
+    text-align: center;
+  }
+  .text_contact_one {
+    text-align: center;
+    margin-right: 30px;
+  }
+  .text_contact_two {
+    text-align: center;
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .contacts {
+    margin-right: 30px;
+  }
+  .contact_ul {
+    margin-right: 15px;
+  }
+  .contact_h1 {
+    font-size: 40px;
+    padding-right: 20px;
+  }
+  .contact_logo {
+    width: 170px;
+    height: 200px;
+    margin-right: 20px;
+  }
+  .contact_email {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 372px) {
+  .contact_h1 {
+    margin-right: 25px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .contact_h1 {
+    margin-left: 25px;
+  }
+}
