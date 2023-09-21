@@ -6,6 +6,7 @@ import Auth from './components/Auth/Auth'
 import Contact from "./components/Contact/Contact";
 import Students from "./components/Students/Students";
 import Slider from "./components/Slider/Slider";
+import Profil from "./components/Profil/Profil";
 import Footer from './components/Footer/Footer';
 
 import Info from "./components/Info/Info";
@@ -18,8 +19,9 @@ function App() {
   return (
     <>
     <Header />
-    {token ? <Auth/> : null}
+     <Auth/> 
       <Routes>
+        <Route path={"/Chat"} element={<Profil/>} />
         <Route path={"/"} element={<Slider/>} />
         <Route path={"/login"} element={<SignIn />} />
         <Route path={"/student"} element={<Students/>} />
