@@ -59,6 +59,7 @@ const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.logo}>
+
         <Link to={"/"}>
           <img src={logo} alt="" />
         </Link>
@@ -80,7 +81,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/"}>
+            <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
           </li>
