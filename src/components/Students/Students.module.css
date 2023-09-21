@@ -10,7 +10,10 @@
 }
 .block_students {
     position: relative;
+    flex-grow: 1;
+    margin-bottom: 50.8px;
 }
+
 .students_content {
     display: flex;
     align-items: center;

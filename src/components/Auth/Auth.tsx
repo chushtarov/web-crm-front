@@ -1,5 +1,4 @@
-import React from "react";
-import style from "./Out.module.css";
+import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
 
 const Out = () => {
