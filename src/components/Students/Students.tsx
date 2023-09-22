@@ -6,7 +6,7 @@ import { fetchCard } from "../../features/cardSlicer";
 import { RootState } from "../../app/store";
 import Student from "./Student";
 const Students = () => {
-  const card = useSelector((state: RootState) => state.reducer.cardSlicer.card);
+  const card = useSelector((state: RootState) => state.cardSlicer.card);
 
   const dispatch = useDispatch();
   useEffect(() => {
