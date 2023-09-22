@@ -11,9 +11,10 @@ import Info from "./components/Info/Info";
 import Sandbox from "./components/Sandbox/Sandbox";
 import { useSelector } from "react-redux";
 import { RootState } from "./app/store";
+import Tasks from "./components/Tasks/Tasks";
 
 function App() {
-  const token = useSelector((state:RootState) => state.reducer.signInSlice.token)
+  const token = useSelector((state:RootState) => state.signInSlice.token)
   return (
     <>
     <Header />
@@ -24,6 +25,7 @@ function App() {
         <Route path={"/info"} element={<Info />} />
         <Route path={"/sandbox"} element={<Sandbox />} />
         <Route path={"/contact"} element={<Contact />} />
+        <Route path={"/tasks"} element={<Tasks />} />
       </Routes>
       <Footer/>
     </>
