@@ -20,7 +20,7 @@ function App() {
   return (
     <>
     <Header />
-     <Auth/> 
+     {token ? <Auth/> : null }
       <Routes>
         <Route path={"/Chat"} element={<Profil/>} />
         <Route path={"/"} element={<Slider/>} />
