@@ -1,7 +1,8 @@
-import React  from "react";
+
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/theme-tomorrow";
+import "ace-builds/src-noconflict/theme-tomorrow_night";
+
 import "ace-builds/src-noconflict/snippets/html";
 import "ace-builds/src-noconflict/ext-language_tools";
 
@@ -11,21 +12,17 @@ const HtmlEditor = ({html, setHtml}) => {
     placeholder="Write your HTML codes here!"
     mode="html"
     value={html}
+    snippets="html"
     onChange={value => setHtml(value)}
-    theme="tomorrow"
-    name="editor_html"
+    theme="tomorrow-night"
+    name="editor_css"
     fontSize={20}
     height={"100%"}
     width={"100%"}
-    showPrintMargin={false}
-    showGutter={false}
-    highlightActiveLine={true}
     setOptions={{
       enableBasicAutocompletion: true,
-      enableLiveAutocompletion: true,
+      enebleLiveAutocompletion: true,
       enableSnippets: true,
-      showLineNumbers: true,
-      tabSize: 2,
     }}
     />
   )
