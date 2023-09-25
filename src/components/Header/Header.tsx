@@ -5,6 +5,7 @@ import logo from "../../img/logo.f5584409.svg";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { RiProfileLine } from "react-icons/ri";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { ImExit } from "react-icons/im";
 import { FaInfo } from "react-icons/fa";
 import { MdAssignmentAdd } from "react-icons/md";
@@ -23,6 +24,7 @@ const Header = () => {
 
   const [openMenu, setOpenMenu] = useState(false);
   const [openProf, setOpenProf] = useState(false);
+  const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const profRef = useRef(null);
 
@@ -64,7 +66,7 @@ const Header = () => {
           <img src={logo} alt="" />
         </Link>
       </div>
-      <div className={style.nav}>
+      <div className={open ? style.open : style.nav}>    
         <ul className={style.nav__ul}>
           <li className={style.ul__link}>
             <button
@@ -115,6 +117,7 @@ const Header = () => {
         </ul>
         
       </div>
+
       <div className={style.prof}>
         {token ? <div className={style.log__user}>{userOne.login}</div> : ""}
         <button
@@ -124,6 +127,7 @@ const Header = () => {
         >
           <CgProfile />
         </button>
+        <button onClick={() => setOpen(!open)} className={style.burger_click}><span className={style.burger_icon}><RxHamburgerMenu/></span></button>
         {openProf ? (
           <div className={style.prof__ul}>
             {token ? (
