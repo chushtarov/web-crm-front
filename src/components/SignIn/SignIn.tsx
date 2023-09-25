@@ -11,8 +11,8 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [blur, setBlur] = useState(false);
 
-  const token = useSelector((state: RootState) => state.reducer.signInSlice.token);
-  const error = useSelector((state: RootState) => state.reducer.signInSlice.error) as
+  const token = useSelector((state: RootState) => state.signInSlice.token);
+  const error = useSelector((state: RootState) => state.signInSlice.error) as
     | string
     | null;
   const dispatch = useDispatch<AppDispatch>();
