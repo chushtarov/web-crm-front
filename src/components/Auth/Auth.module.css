@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&family=Roboto:wght@400;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.out_content {
+    font-family: Roboto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(124, 143, 205);
+}
+.out_ul {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.out_a {
+    color: aliceblue;
+    transition: .4s;
+}
+.out_a:hover {
+    color: rgb(37, 37, 167);
+}
+.out_a:focus {
+    color: rgb(37, 37, 167);
+}
+
+
+/* Адаптив */
+
+
+@media screen and (max-width: 780px) {
+    .out_a {
+        font-size: 14px;
+    }  
+    .out_ul {
+        gap: 40px
+    }
+}
+
+@media screen and (max-width: 709px) {
+    .out_a {
+        font-size: 12px;
+    }  
+    .out_ul {
+        gap: 30px
+    }
+}

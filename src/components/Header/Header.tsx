@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+
+import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./Header.module.css";
 import logo from "../../img/logo.f5584409.svg";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { RiProfileLine } from "react-icons/ri";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { ImExit } from "react-icons/im";
 import { FaInfo } from "react-icons/fa";
 import { MdAssignmentAdd } from "react-icons/md";
@@ -12,17 +14,20 @@ import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { AppDispatch, RootState } from "../../app/store";
 import { oneUser } from "../../features/usersSlice";
 import { fetchChats } from "../../features/chatsSlice";
+import img__prof from '../../img/2224588662290622381_99.jpg'
+
 
 const Header = () => {
   const token = useSelector((state: RootState) => state.signInSlice.token);
   const userOne = useSelector((state: RootState) => state.usersSlice.oneUser);
   const dispatch = useDispatch<AppDispatch>();
+
   const chats = useSelector((state: RootState) => state.chat.chats);
 
   useEffect(() => {
     dispatch(oneUser());
     dispatch(fetchChats());
-  }, [dispatch]);
+  }, [ token, dispatch]);
 
   const getChatIdForUser = (userId) => {
     const chat = chats.find((chat) => chat.participants.includes(userId));
@@ -33,10 +38,11 @@ const Header = () => {
 
   const userId = userOne ? userOne._id : null;
   const chatId = userId ? getChatIdForUser(userId) : null;
-  console.log(chatId)
+
 
   const [openMenu, setOpenMenu] = useState(false);
   const [openProf, setOpenProf] = useState(false);
+  const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const profRef = useRef(null);
 
@@ -77,7 +83,7 @@ const Header = () => {
           <img src={logo} alt="" />
         </Link>
       </div>
-      <div className={style.nav}>
+      <div className={open ? style.open : style.nav}>    
         <ul className={style.nav__ul}>
           <li className={style.ul__link}>
             <button
@@ -87,6 +93,23 @@ const Header = () => {
             >
               Экзамен
             </button>
+            {openMenu ? (
+          <div className={style.menu}>
+            <button>
+              <FaInfo className={style.icon} />
+              <Link className={style.link__color} to={"info"}>
+                Информация
+              </Link>
+            </button>
+            <button>
+              <MdAssignmentAdd className={style.icon} />
+              <Link className={style.link__color} to={"form"}>
+                {" "}
+                Записаться
+              </Link>
+            </button>
+          </div>
+        ) : null}
           </li>
           <li>
             <Link className={style.ul__link} to={"/"}>
@@ -94,17 +117,17 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/"}>
+            <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/"}>
-              Тесты
+            <Link className={style.ul__link} to={"/sandbox"}>
+              Тренажер
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"#contact"}>
+            <Link className={style.ul__link} to={"/contact"}>
               Контакты
             </Link>
           </li>
@@ -114,6 +137,7 @@ const Header = () => {
             </Link>
           </li>
         </ul>
+
         {openMenu ? (
           <div className={style.menu}>
             <button>
@@ -131,7 +155,9 @@ const Header = () => {
             </button>
           </div>
         ) : null}
+
       </div>
+
       <div className={style.prof}>
         {token ? <div className={style.log__user}>{userOne.login}</div> : ""}
         <button
@@ -141,17 +167,23 @@ const Header = () => {
         >
           <CgProfile />
         </button>
+        <button onClick={() => setOpen(!open)} className={style.burger_click}><span className={style.burger_icon}><RxHamburgerMenu/></span></button>
         {openProf ? (
           <div className={style.prof__ul}>
             {token ? (
-              <>
-                <button>
+
+              <div className={style.profil_auth}>
+                {/* <button>
                   <RiProfileLine className={style.icon} /> Профиль
-                </button>
+                </button> */}
+                <div className={style.ava__prof}><img src={img__prof} alt="" /></div>
+                <h3>Профиль</h3>
+                <div><p>Пользователь:</p><p>{userOne.login}</p></div>
+                <div><p>Группа:</p><p>{userOne.group}</p></div>
                 <button onClick={handleExit}>
                   <ImExit className={style.icon} /> Выход
                 </button>
-              </>
+              </div>
             ) : (
               <button onClick={handleExit}>
                 <HiArrowDownOnSquare className={style.icon} />{" "}

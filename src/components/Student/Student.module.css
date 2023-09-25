@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+input {
+    padding-left: 10px;
+}
+button {
+    background: transparent;
+}
+.student_container {
+    max-width: 970px;
+    margin-top: 100px;
+    margin: auto;
+}
+.student_content {
+    margin: 30px;
+    margin: auto;
+}
+.add_student {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.student_group_name {
+    display: flex;
+    justify-content: center;
+}
+.input_group {
+    width: 432px;
+    height: 40px;
+    border: 1px solid #003399;
+    border-radius: 5px;
+}
+.input_name {
+    height: 40px;
+    border: 1px solid #003399;
+    border-radius: 5px;
+}
+.student_registor {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.input_login {
+    width: 432px;
+    height: 40px;
+    border: 1px solid #003399;
+    border-radius: 5px;
+}
+.student_password {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.student_button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 279px;   
+}
+.student_btn {
+    border: 1px solid #003399;
+    background-color: #003399;
+    color: #FFF;
+    cursor: pointer;
+    width: 180px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-size: 15px;
+}
+.list_student {  
+    width: 700px;
+    height: 500px;
+    margin: auto;
+    background-color: gainsboro;
+    padding: 20px;
+    border-radius: 10px;
+}
+.close_list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+.list_content {
+    display: flex;
+    align-items: center
+}
+.add {
+    margin-top: -12px;
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 30px;
+    color: #003399;
+    cursor: pointer;
+}
+.search_student {
+    height: 30px;
+    border-radius: 5px;
+}
+.close_modal {
+    margin-top: -12px;
+    margin-left: 13px;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 30px;
+    color: #003399;
+    cursor: pointer;
+}
+.students_one {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+}
+.add_stud {
+    position: relative;
+}
+.block_stud {
+    border-radius: 10px;
+    width: 700px;
+    height: 500px;
+    background-color:  gainsboro;
+    position: absolute;
+    top: -35px;
+    right: -200px;
+}
+.add_btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.adds {
+    height: 45px;
+    border-radius: 5px;
+    width: 150px;
+    background-color: #003399;
+    color: #FFF;
+    font-size: 16px;
+    cursor: pointer;
+}

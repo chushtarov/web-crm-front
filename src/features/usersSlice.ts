@@ -5,6 +5,10 @@ type User = {
   _id: string;
   login: string;
   password: string;
+  isAdmin: boolean;
+  isMentor: boolean;
+  isStudent: boolean;
+  result: number
 };
 
 type StateUsers = {

@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&family=Roboto:wght@400;700&display=swap");
 
-* {
-  font-family: Roboto;
-}
+
 
 .header {
+  font-family: Roboto;
   display: flex;
   position: sticky;
   width: 100%;
@@ -15,8 +14,9 @@
   align-items: center;
   border-bottom: 1px solid gray;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 30px 30px;
   background: #003399;
+  z-index: 3;
 }
 .logo img {
   width: 130px;
@@ -34,6 +34,7 @@
   color: white;
   font-size: 18px;
   transition: 0.4s;
+  position: relative;
 }
 .ul__link:hover {
   color: rgb(66, 66, 131);
@@ -50,8 +51,8 @@
 }
 .menu button {
   width: 130px;
-  display: flex;
   font-size: 16px;
+  display: flex;
   align-items: center;
   padding: 10px;
   height: 30px;
@@ -64,6 +65,7 @@
   align-items: center;
 }
 .prof__ul {
+  border-radius: 5px;
   position: absolute;
   border: 1px solid #003399;
   box-shadow: 0px 2px 10px 2px rgba(34, 60, 80, 0.2);
@@ -75,7 +77,7 @@
   color: white;
   font-size: 18px;
   padding-right: 10px;
-  padding-bottom: 5px;
+ 
 }
 .prof__ul button {
   width: 130px;
@@ -103,6 +105,7 @@
   cursor: pointer;
   background: transparent;
   border: none;
+  height: 28px;
   font-size: 28px;
   color: white;
 }
@@ -116,11 +119,36 @@
   position: absolute;
   border: 1px solid #003399;
   box-shadow: 0px 2px 10px 2px rgba(34, 60, 80, 0.2);
-  top: 62px;
+  top: 45px;
   background: white;
-  right: 890px;
+  right: -26px;
+}
+.burger_click {
+  display: none;
 }
 
+
+.profil_auth{
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+.profil_auth h3{
+  padding-left: 10px;
+}
+.profil_auth div{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.profil_auth button{
+margin: 10px auto;
+border-radius: 5px;
+border: 1px solid black;
+padding-left: 25px;
+
+}
 /* Адаптив */
 
 @media screen and (max-width: 800px) {
@@ -132,8 +160,20 @@
 @media screen and (max-width: 690px) {
   .nav {
     position: fixed;
-    left: 0;
+    left: -185px;
     top: 59px;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    height: 100%;
+    opacity: 0.95;
+    transition: 0.4s;
+    box-shadow: none;
+  }
+  .open {
+    position: fixed;
+    top: 59px;
+    left: 0;
     display: flex;
     flex-direction: column;
     background-color: #003399;
@@ -142,9 +182,25 @@
     opacity: 0.95;
     transition: 0.4s;
     box-shadow: none;
+    /* box-shadow: 0 0 0 1000px rgb(0, 0, 0, 0.3); */
   }
-  .header {
-    box-shadow: 0 0 0 1000px rgb(0, 0, 0, 0.3);
+  .burger_click {
+    display: block;
+    margin-left: 15px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+  .burger_click:hover {
+    transform: scale(1.07);
+  }
+  .burger_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+
   }
   .logo {
     display: flex;
