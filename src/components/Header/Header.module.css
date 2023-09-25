@@ -123,6 +123,9 @@
   background: white;
   right: -26px;
 }
+.burger_click {
+  display: none;
+}
 
 /* Адаптив */
 
@@ -135,8 +138,20 @@
 @media screen and (max-width: 690px) {
   .nav {
     position: fixed;
-    left: 0;
+    left: -185px;
     top: 59px;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    height: 100%;
+    opacity: 0.95;
+    transition: 0.4s;
+    box-shadow: none;
+  }
+  .open {
+    position: fixed;
+    top: 59px;
+    left: 0;
     display: flex;
     flex-direction: column;
     background-color: #003399;
@@ -145,9 +160,25 @@
     opacity: 0.95;
     transition: 0.4s;
     box-shadow: none;
+    /* box-shadow: 0 0 0 1000px rgb(0, 0, 0, 0.3); */
   }
-  .header {
-    box-shadow: 0 0 0 1000px rgb(0, 0, 0, 0.3);
+  .burger_click {
+    display: block;
+    margin-left: 15px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+  .burger_click:hover {
+    transform: scale(1.07);
+  }
+  .burger_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+
   }
   .logo {
     display: flex;
