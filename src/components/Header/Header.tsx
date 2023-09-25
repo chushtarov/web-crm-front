@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./Header.module.css";
@@ -12,16 +13,32 @@ import { MdAssignmentAdd } from "react-icons/md";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { AppDispatch, RootState } from "../../app/store";
 import { oneUser } from "../../features/usersSlice";
+import { fetchChats } from "../../features/chatsSlice";
 import img__prof from '../../img/2224588662290622381_99.jpg'
+
 
 const Header = () => {
   const token = useSelector((state: RootState) => state.signInSlice.token);
   const userOne = useSelector((state: RootState) => state.usersSlice.oneUser);
   const dispatch = useDispatch<AppDispatch>();
 
+  const chats = useSelector((state: RootState) => state.chat.chats);
+
   useEffect(() => {
     dispatch(oneUser());
-  }, [token]);
+    dispatch(fetchChats());
+  }, [ token, dispatch]);
+
+  const getChatIdForUser = (userId) => {
+    const chat = chats.find((chat) => chat.participants.includes(userId));
+
+    return chat ? chat._id : null;
+  };
+
+
+  const userId = userOne ? userOne._id : null;
+  const chatId = userId ? getChatIdForUser(userId) : null;
+
 
   const [openMenu, setOpenMenu] = useState(false);
   const [openProf, setOpenProf] = useState(false);
@@ -62,7 +79,6 @@ const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.logo}>
-
         <Link to={"/"}>
           <img src={logo} alt="" />
         </Link>
@@ -115,8 +131,31 @@ const Header = () => {
               Контакты
             </Link>
           </li>
+          <li className={style.ul__link}>
+            <Link className={style.ul__menu} to={`/chat/${chatId}`}>
+              Чат
+            </Link>
+          </li>
         </ul>
-        
+
+        {openMenu ? (
+          <div className={style.menu}>
+            <button>
+              <FaInfo className={style.icon} />
+              <Link className={style.link__color} to={"info"}>
+                Информация
+              </Link>
+            </button>
+            <button>
+              <MdAssignmentAdd className={style.icon} />
+              <Link className={style.link__color} to={"form"}>
+                {" "}
+                Записаться
+              </Link>
+            </button>
+          </div>
+        ) : null}
+
       </div>
 
       <div className={style.prof}>
@@ -132,6 +171,7 @@ const Header = () => {
         {openProf ? (
           <div className={style.prof__ul}>
             {token ? (
+
               <div className={style.profil_auth}>
                 {/* <button>
                   <RiProfileLine className={style.icon} /> Профиль
