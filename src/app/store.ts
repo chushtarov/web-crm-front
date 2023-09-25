@@ -3,10 +3,9 @@ import rootReducer from '../features/rootReducer';
 
 
 export const store = configureStore({
-    reducer: {
-        reducer:rootReducer,
+    reducer:rootReducer,
         
-    }
+    
 })
 
 export type RootState = ReturnType<typeof store.getState>
