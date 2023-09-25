@@ -19,7 +19,7 @@ const Tasks = () => {
 
   return (
     <div className={style.tasks}>
-      <div className={open ? style.item__task2 : style.item__task}>
+      <div className={!open ? style.item__task2 : style.item__task}>
         <button className={open ? style.button2 : style.button}><Link className={style.Link}to="https://www.youtube.com/results?search_query=html">1. HTML. CSS-первое касание. Figma. Адаптивная Верстка</Link></button>
         {user.isAdmin ? (
           <button className={style.button} onClick={() => setOpen(!open)}>
@@ -27,7 +27,7 @@ const Tasks = () => {
           </button>
         ) : null}
       </div>
-      <div className={!open ? style.item__task2 : style.item__task}>
+      <div className={!open2 ? style.item__task2 : style.item__task}>
         <button className={!open2 ? style.button2 : style.button}>2. Java script, основы, первая практика</button>
         {user.isAdmin ? (
           <button  className={style.button}onClick={() => setOpen2(!open2)}>

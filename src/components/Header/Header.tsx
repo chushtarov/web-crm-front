@@ -12,6 +12,7 @@ import { MdAssignmentAdd } from "react-icons/md";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { AppDispatch, RootState } from "../../app/store";
 import { oneUser } from "../../features/usersSlice";
+import img__prof from '../../img/2224588662290622381_99.jpg'
 
 const Header = () => {
   const token = useSelector((state: RootState) => state.signInSlice.token);
@@ -131,14 +132,18 @@ const Header = () => {
         {openProf ? (
           <div className={style.prof__ul}>
             {token ? (
-              <>
-                <button>
+              <div className={style.profil_auth}>
+                {/* <button>
                   <RiProfileLine className={style.icon} /> Профиль
-                </button>
+                </button> */}
+                <div className={style.ava__prof}><img src={img__prof} alt="" /></div>
+                <h3>Профиль</h3>
+                <div><p>Пользователь:</p><p>{userOne.login}</p></div>
+                <div><p>Группа:</p><p>{userOne.group}</p></div>
                 <button onClick={handleExit}>
                   <ImExit className={style.icon} /> Выход
                 </button>
-              </>
+              </div>
             ) : (
               <button onClick={handleExit}>
                 <HiArrowDownOnSquare className={style.icon} />{" "}
