@@ -9,6 +9,7 @@ type User = {
   isMentor: boolean;
   isStudent: boolean;
   result: number;
+  group: string;
 };
 
 type stateApp = {
@@ -26,7 +27,8 @@ const initialState: stateApp = {
     isAdmin: false,
     isMentor: false,
     isStudent: false,
-    result: 0
+    result: 0,
+    group: ""
   },
   error: null,
   signIn: false,
