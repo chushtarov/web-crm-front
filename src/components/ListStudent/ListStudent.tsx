@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useEffect } from "react";
 import { useState } from "react";
 import style from "./ListStudent.module.css";
 import { RiCloseCircleLine } from "react-icons/ri";
-import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { AiOutlineUsergroupAdd, AiOutlineCloseCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
 import { fetchUsers } from "../../features/usersSlice";
@@ -60,11 +60,11 @@ const Student = () => {
                   <form onSubmit={handleAddStud} className={style.modal_add}>
                     <h2 className={style.add_student}>
                       Добавление нового студента
-                      <button onClick={() => setOpen(!open)} className={style.close_btn}>х</button>
+                      <button onClick={() => setOpen(!open)} className={style.close_btn}><AiOutlineCloseCircle/></button>
                     </h2>
                     <div className={style.student_group_name}>
                       <div>
-                        <p>Группа</p>
+                        {/* <p>Группа</p> */}
                         <input
                         value={group}
                         onChange={handleGroup}
@@ -76,7 +76,7 @@ const Student = () => {
                     </div>
                     <div className={style.student_registor}>
                       <div>
-                        <p>Логин</p>
+                        {/* <p>Логин</p> */}
                         <input
                             value={login}
                             onChange={handleLogin}
@@ -88,7 +88,7 @@ const Student = () => {
                     </div>
                     <div className={style.student_password}>
                       <div>
-                        <p>Пароль</p>
+                        {/* <p>Пароль</p> */}
                         <input
                             value={password}
                             onChange={handlePassword}
