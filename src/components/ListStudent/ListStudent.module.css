@@ -64,13 +64,15 @@
 .modal_add {
   width: 500px;
   height: 400px;
-  background: #dbdbdb;
+  background-color: rgb(124, 143, 205);
+
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
   box-shadow: 0px 2px 10px 2px rgba(34, 60, 80, 0.2);
+  border-radius: 10px;
 }
 
 .modal_add h2 {
@@ -93,13 +95,19 @@
   display: flex;
   justify-content: center;
 }
-
 .input{
     height: 35px;
     width: 300px;
     padding-left: 10px;
     margin-top: 10px;
     outline: none;
+    background: transparent; 
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+}
+.input::placeholder {
+  color: rgb(225, 212, 212);
 }
 
 .student_button{
@@ -110,19 +118,44 @@
 }
 
 .student_btn{
-    height: 35px;
+    height: 40px;
     width: 300px;
+    margin-top: 10px;
     padding-left: 10px;
     outline: none;
+    border: none;
+    background: transparent;
+    background-color: #003399;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    transition: 0.4s;
 }
-
 .student_btn:hover{
-background: #003399;
-color: white;
+  transform: scale(1.05);
 }
 
 .close_btn{
     position: absolute;
     right: -10px;
     top: -10px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.4s;
 }
+.close_btn:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
