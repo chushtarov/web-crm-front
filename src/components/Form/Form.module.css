@@ -3,37 +3,71 @@
 
 .form{
   font-family: Roboto;
-
+  margin-bottom: 100px;
+}
+.form_container {
     max-width: 970px;
-    margin: 20px auto;
-    flex-grow: 1;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
 }
-.form__items{
-display: flex;
-flex-direction: column;
-width: 400px;
-height: 300px;
-justify-content: space-between;
+.form_inputs {
+    width: 508px;
+    height: 568px;
+    padding: 30px;
+    padding-left: 70px;
+    background-color: rgba(0, 51, 153, 0.1);
 }
-
-.form__items input{
-    height: 40px;
-    font-size: 18px;
-    border: 1px solid #003399;
+.input_form_name {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #003399;
+    width: 280px;
+    margin-top: 90px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    padding-left: 5px;
     outline: none;
-    padding-left: 10px;
 }
-.form h2{
-    margin-bottom: 20px;
+.input_form_email {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #003399;
+    width: 280px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    padding-left: 5px;
+    outline: none;
+}
+.input_form_telephone {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #003399;
+    width: 280px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    outline: none;
+    padding-left: 5px;
+}
+.form_btn {
     text-align: center;
+    margin-top: 100px;
+    border-bottom: 1px solid #003399;
+    padding-bottom: 10px;
 }
-.form button{
-    height: 40px;
-
+.btn {
+    width: 165px;
+    height: 60px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #003399;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFF
 }
-.form button:hover{
-    height: 40px;
-color: white;
-background: #003399;
-border: none;
+.form_img {
+    background-color: #FFF;
 }
