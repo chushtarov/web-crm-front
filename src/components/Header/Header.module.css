@@ -37,7 +37,7 @@
   position: relative;
 }
 .ul__link:hover {
-  color: rgb(66, 66, 131);
+  color: rgb(195, 195, 197);
 }
 .ul__link:focus {
   color: rgb(66, 66, 131);
@@ -63,6 +63,9 @@
   position: relative;
   display: flex;
   align-items: center;
+}
+.ava{
+  border-radius: 50%;
 }
 .prof__ul {
   border-radius: 5px;
@@ -91,10 +94,11 @@
 }
 
 .menu button:hover {
-  background-color: rgba(128, 128, 128, 0.452);
+  background-color: rgba(227, 226, 226, 0.452);
 }
 .prof__ul button:hover {
-  background-color: rgba(128, 128, 128, 0.452);
+  background-color: #003399;
+  color: white;
   display: flex;
   align-items: center;
 }
@@ -105,7 +109,7 @@
   cursor: pointer;
   background: transparent;
   border: none;
-  height: 28px;
+  height: 38px;
   font-size: 28px;
   color: white;
 }

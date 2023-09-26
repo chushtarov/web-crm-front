@@ -8,7 +8,8 @@ type User = {
   isAdmin: boolean;
   isMentor: boolean;
   isStudent: boolean;
-  result: number
+  result: number;
+  group: string;
 };
 
 type StateUsers = {
@@ -76,7 +77,7 @@ export const fetchUsers = createAsyncThunk<
   { rejectValue: unknown; state: RootState }
 >("users/fetch", async (_, thunkAPI) => {
   try {
-    const res = await fetch("http://localhost:3000/users");
+    const res = await fetch("http://localhost:3000/api/users");
     const users = await res.json();
     return users;
   } catch (e) {
