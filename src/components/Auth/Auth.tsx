@@ -31,7 +31,7 @@ const dispatch = useDispatch<AppDispatch>()
               </Link>
             </li>
             <li>
-              <Link to={"/stud"} className={style.out_a}>
+              <Link to={"/listStud"} className={style.out_a}>
                 Студенты
               </Link>
             </li>

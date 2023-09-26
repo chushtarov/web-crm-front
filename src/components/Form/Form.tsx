@@ -1,6 +1,7 @@
 // import style from './Form.module.css'
 import { useRef } from 'react'
 import emailjs from '@emailjs/browser';
+import style from './Form.module.css'
 
 const Form = () => {
   const form = useRef()
@@ -17,17 +18,21 @@ const Form = () => {
       e.target.reset()
   };
   return (
-<section>
-  <div>
-    <h2>Contact Us</h2>
-    <form ref={form}  onSubmit={ sendEmail}>
-      <input type="text" placeholder='ФИО' name='user_name' required />
-      <input type="email" placeholder='Email' name='user_email'  required/>
-      <input type="phone" placeholder='Phone' name='user_phone'  required/>
+  <div className={style.form}>
+    <h2>Форма для записи</h2>
+    <form className={style.form__items} ref={form}  onSubmit={sendEmail}>
+      <h4>ФИО</h4>
+      <input type="text"  name='user_name' required />
+      <h4>Email</h4>
+
+      <input type="email" name='user_email'  required/>
+      <h4>Телефон</h4>
+
+      <input type="phone"  name='user_phone'  required/>
       <button type="submit">Отправить</button>
     </form>
   </div>
-</section>
+
   )
 }
 

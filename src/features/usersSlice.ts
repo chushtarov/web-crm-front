@@ -8,7 +8,8 @@ type User = {
   isAdmin: boolean;
   isMentor: boolean;
   isStudent: boolean;
-  result: number
+  result: number;
+  group: string;
 };
 
 type StateUsers = {

@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&family=Roboto:wght@400;700&display=swap");
+
+
+.form{
+  font-family: Roboto;
+
+    max-width: 970px;
+    margin: 20px auto;
+    flex-grow: 1;
+}
+.form__items{
+display: flex;
+flex-direction: column;
+width: 400px;
+height: 300px;
+justify-content: space-between;
+}
+
+.form__items input{
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #003399;
+    outline: none;
+    padding-left: 10px;
+}
+.form h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.form button{
+    height: 40px;
+
+}
+.form button:hover{
+    height: 40px;
+color: white;
+background: #003399;
+border: none;
+}

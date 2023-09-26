@@ -59,7 +59,6 @@ const Info = () => {
           </Link>
         </p>
       </div>
-      <p><Link to={'/form'}>Хотите записаться?</Link></p>
     </div>
   );
 };
