@@ -1,0 +1,37 @@
+.chat {
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .chat__title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .chat__ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .chat__li {
+    margin-bottom: 8px;
+  }
+  
+  .chat__link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .chat__link:hover {
+    text-decoration: underline;
+  }
+  
+  .loadErr {
+    color: #333;
+  }

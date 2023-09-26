@@ -2,6 +2,12 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import SignIn from "./components/SignIn/SignIn";
 import { Routes, Route } from "react-router-dom";
+
+
+
+// import ChatList from "./components/ChatList/ChatList";
+import ChatRoom from "./components/ChatRoom/Chat";
+
 import Auth from "./components/Auth/Auth";
 import ListStudent from "./components/ListStudent/ListStudent";
 import Contact from "./components/Contact/Contact";
@@ -27,6 +33,8 @@ function App() {
         <Route path={"/Chat"} element={<Profil />} />
         <Route path={"/"} element={<Slider />} />
         <Route path={"/login"} element={<SignIn />} />
+        {/* <Route path="/" element={<ChatList />} /> */}
+        <Route path={`/chat/:chatId`} element={<ChatRoom />} />
 
         <Route path={"/student"} element={<Students />} />
         <Route
