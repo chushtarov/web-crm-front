@@ -1,0 +1,100 @@
+.home_container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.home_content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 56px;
+}
+.home_span {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1f1f1f;;
+}
+.home__well {
+    font-size: 17px;
+    font-family: 'Onest',Arial,sans-serif;
+}
+.home_img {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.glav_img {
+    width: 1000px;
+    height: 600px;
+}
+.home_img_content {
+    position: absolute;
+    left: -190px;
+    top: -6px;
+    color: #005ae0;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Onest',Arial,sans-serif;
+}
+.home_promotion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.akcia_img { 
+    position: absolute;
+    left: 460px;
+    top: -23px;
+    width: 90px;
+    height: 30px;
+}
+.akcia {
+    position: absolute;
+    left: 475px;
+    top: -18px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #FFF;
+    font-family: 'Onest',Arial,sans-serif;
+}
+.home_garanty {  
+    width: 300px;
+    height: 65px;
+}
+.home_profes {
+   margin-top: 50px;
+   font-size: 30px; 
+   font-family: 'Onest',Arial,sans-serif;
+} 
+.home_frontend {
+    font-size: 70px;
+    font-weight: 900;
+    margin-top: 15px;
+    font-family: 'Onest',Arial,sans-serif;
+}
+.home_info {
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 50px;
+    line-height: 28px;
+    font-family: 'Onest',Arial,sans-serif;
+}
+.home_btn {
+    width: 345px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    background-color: #003399;
+    margin-top: 60px;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-bottom: 30px;
+    
+}
+.home_btn:hover {
+    background-color: #164ebf;
+}
+.home_link {
+    font-size: 18px;
+    color: #FFF;
+}

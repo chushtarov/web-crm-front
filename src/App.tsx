@@ -12,7 +12,7 @@ import Auth from "./components/Auth/Auth";
 import ListStudent from "./components/ListStudent/ListStudent";
 import Contact from "./components/Contact/Contact";
 import Students from "./components/Students/Students";
-import Slider from "./components/Slider/Slider";
+import Home from "./components/Home/Home";
 import Profil from "./components/Profil/Profil";
 import Footer from "./components/Footer/Footer";
 import Info from "./components/Info/Info";
@@ -31,7 +31,7 @@ function App() {
       {token ? <Auth /> : null}
       <Routes>
         <Route path={"/Chat"} element={<Profil />} />
-        <Route path={"/"} element={<Slider />} />
+        <Route path={"/"} element={<Home/>} />
         <Route path={"/login"} element={<SignIn />} />
         {/* <Route path="/" element={<ChatList />} /> */}
         <Route path={`/chat/:chatId`} element={<ChatRoom />} />
