@@ -4,6 +4,7 @@ import img from './tild3763-6136-4135-b939-303264396137___2_1 1.png';
 import img_1 from './ewrwer.svg';
 import img_2 from './red.svg';
 import { Link } from 'react-router-dom';
+import HomeTwo from '../HomeTwo/HomeTwo';
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
+        <HomeTwo/>
     </div>
   )
 }

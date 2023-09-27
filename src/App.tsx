@@ -13,6 +13,7 @@ import ListStudent from "./components/ListStudent/ListStudent";
 import Contact from "./components/Contact/Contact";
 import Students from "./components/Students/Students";
 import Home from "./components/Home/Home";
+import HomeTwo from "./components/HomeTwo/HomeTwo";
 import Profil from "./components/Profil/Profil";
 import Footer from "./components/Footer/Footer";
 import Info from "./components/Info/Info";
