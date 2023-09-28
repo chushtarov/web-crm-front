@@ -4,12 +4,13 @@ import axios from "axios";
 import { RootState } from "../app/store";
 import { useParams } from "react-router-dom";
 
-
 interface Message {
   id: string;
   text: string;
   chat: string;
   sender: string;
+  timestamp: string;
+  day: string;
 }
 
 interface MessageState {
@@ -27,8 +28,9 @@ const initialState: MessageState = {
 export const fetchMessages = createAsyncThunk(
   "messages/getMessage",
   async (chatId: string, { getState }) => {
-    const state = getState() as RootState; 
+    const state = getState() as RootState;
     const token = state.signInSlice.token;
+    
 
     const response = await axios.get(
       `http://localhost:3000/api/chats/${chatId}/messages`,
@@ -37,7 +39,7 @@ export const fetchMessages = createAsyncThunk(
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
-      }
+    }
     );
     return response.data;
   }
@@ -46,7 +48,7 @@ export const fetchMessages = createAsyncThunk(
 export const sendMessage = createAsyncThunk(
   "messages/createMessage",
   async (message: Message, { getState }) => {
-    const state = getState() as RootState; 
+    const state = getState() as RootState;
     const token = state.signInSlice.token;
 
     const response = await fetch(
@@ -72,16 +74,19 @@ export const sendMessage = createAsyncThunk(
 
 export const deleteMessage = createAsyncThunk(
   "messages/deleteMessage",
-  async (messageId: string, { getState }) => {
+  async (
+    { chatId, messageId }: { chatId: string; messageId: string },
+    { getState }
+  ) => {
     const state = getState() as RootState;
     const token = state.signInSlice.token;
-    const { chatId } = useParams();
 
     const response = await fetch(
-      `http://localhost:3000/api/chats/${chatId}//messages/${messageId}`,
+      `http://localhost:3000/api/chats/${chatId}/messages/${messageId}`,
       {
         method: "DELETE",
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }
@@ -93,7 +98,7 @@ export const deleteMessage = createAsyncThunk(
       );
     }
 
-    return messageId;
+    return { messageId };
   }
 );
 
@@ -116,9 +121,20 @@ const messageSlice = createSlice({
       })
       .addCase(sendMessage.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.messages.push(action.payload);
+        state.messages = [...state.messages, action.payload];
       })
       .addCase(sendMessage.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || null;
+      })
+      .addCase(deleteMessage.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        const { messageId } = action.payload;
+        state.messages = state.messages.filter(
+          (message) => message._id !== messageId
+        );
+      })
+      .addCase(deleteMessage.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || null;
       });

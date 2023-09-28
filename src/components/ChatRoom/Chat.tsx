@@ -7,12 +7,13 @@ import {
   sendMessage,
   deleteMessage,
 } from "../../features/messagesSlice";
-// import { fetchChats } from "../../features/chatsSlice";
 import { AppDispatch, RootState } from "../../app/store";
-// import { v4 as uuidv4 } from "uuid";
 import { fetchUsers, oneUser } from "../../features/usersSlice";
 import styles from "./ChatRoom.module.css";
+import { RiChatDeleteLine } from "react-icons/ri";
 import { io, Socket } from "socket.io-client";
+import moment from "moment-timezone";
+moment.tz.setDefault("Europe/Moscow");
 
 function ChatRoom() {
   const { chatId } = useParams<{ chatId: string }>();
@@ -23,10 +24,7 @@ function ChatRoom() {
   const [messageInput, setMessageInput] = useState("");
   const users = useSelector((state: RootState) => state.usersSlice.users);
   const [socket, setSocket] = useState<Socket | null>(null);
-  const [messagess, setMessages] = useState<{ text: string; name: string }[]>(
-    []
-  );
-
+  console.log(messages);
   useEffect(() => {
     if (chatId) {
       dispatch(fetchMessages(chatId));
@@ -34,43 +32,57 @@ function ChatRoom() {
       dispatch(oneUser());
     }
 
-    const newSocket = io("http://localhost:3000"); // Создание экземпляра Socket
+    if (!socket) {
+      const newSocket = io("http://localhost:3000"); // Создание экземпляра Socket
 
-    newSocket.on("connect", () => {
-      console.log("Connected to WebSocket server");
+      newSocket.on("connect", () => {
+        console.log("Connected to WebSocket server");
+      });
 
-      // const defaultMessage = { text: "Welcome to the chat!", name: "System" };
-      // setMessages([defaultMessage]);
-    });
+      newSocket.on("chatMessage", (message) => {
+        dispatch(sendMessage(message));
+    console.log("first")
 
-    newSocket.on("chatMessage", (message) => {
-      dispatch(sendMessage(message));
-    });
+      });
 
-    setSocket(newSocket); // Сохранение экземпляра Socket в состоянии
+      newSocket.on("messageDeleted", (data) => {
+        const { chatId, messageId } = data;
+        dispatch(deleteMessage({ chatId, messageId }));
+      });
+
+      setSocket(newSocket); // Сохранение экземпляра Socket в состоянии
+    }
 
     return () => {
-      newSocket.disconnect();
+      if (socket) {
+        socket.disconnect();
+      }
     };
-  }, [chatId, dispatch]);
+  }, [chatId]);
 
   const sendMessageHandler = () => {
-    if (messageInput.trim() && userOne) {
+    if (messageInput.trim() && userOne && socket) {
       const newMessage = {
         text: messageInput,
         sender: userOne._id,
         chat: chatId,
       };
-      socket?.emit("newMessage", newMessage);
+
+      socket?.emit("newMessage", newMessage); // Обновление Redux-состояния
     }
 
     setMessageInput("");
   };
 
-  console.log(users);
-  console.log(messages);
+  const deleteMessageHandler = (messageId: string) => {
+    dispatch(deleteMessage({ chatId, messageId }));
 
-  function getUsernameColor(username) {
+    if (userOne && chatId) {
+      socket?.emit("deleteMessage", { chatId, messageId });
+    }
+  };
+
+  function getUsernameColor(username: string) {
     let hash = 0;
     for (let i = 0; i < username.length; i++) {
       hash = username.charCodeAt(i) + ((hash << 5) - hash);
@@ -79,19 +91,53 @@ function ChatRoom() {
     return color;
   }
 
-  const deleteMessageHandler = (messageId: string) => {
-    dispatch(deleteMessage(messageId));
+  const renderDateLabel = (message, index) => {
+    if (
+      index === 0 ||
+      moment(messages[index - 1].timestamp, "HH:mm").day() !==
+        moment(message.timestamp, "HH:mm").day()
+    ) {
+      return (
+        <div className={styles.messageDay}>
+          {moment(message.timestamp, "HH:mm").calendar(null, {
+            sameDay: "[Сегодня]",
+            lastDay: "[Вчера]",
+            lastWeek: "DD.MM.YYYY",
+            sameElse: "DD.MM.YYYY",
+          })}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const formatDate = (timestamp) => {
+    const momentTimestamp = moment(timestamp, "HH:mm");
+
+    const now = moment();
+    const today = moment().startOf("day");
+    const yesterday = moment().subtract(1, "days").startOf("day");
+
+    if (momentTimestamp.isSame(now, "day")) {
+      return momentTimestamp.format("HH:mm");
+    } else if (momentTimestamp.isSame(yesterday, "day")) {
+      return `вчера, ${momentTimestamp.format("HH:mm")}`;
+    } else {
+      return momentTimestamp.format("DD.MM.YYYY, HH:mm");
+    }
   };
 
   return (
     <div className={styles.chatRoom}>
       <div className={styles.chatHeader}>Chat Room {chat.chats[0]?.name}</div>
       <div className={styles.chatMessages}>
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <div key={message.id} className={styles.message}>
+            {renderDateLabel(message, index)}
             {users.map((user) =>
               user._id === message.sender ? (
                 <div
+                  className={styles.userName}
                   key={user._id}
                   style={{ color: getUsernameColor(user.login) }}
                 >
@@ -100,12 +146,16 @@ function ChatRoom() {
               ) : null
             )}
             <div className={styles.messageText}>{message.text}</div>
+            <div className={styles.messageTime}>
+              {formatDate(message.timestamp)}
+            </div>
             {userOne && userOne._id === message.sender ? (
-              <div className={styles.deleteButton}>
-                <button onClick={() => deleteMessageHandler(message.id)}>
-                  Удалить
-                </button>
-              </div>
+              <button
+                className={styles.deleteButton}
+                onClick={() => deleteMessageHandler(message._id)}
+              >
+                <RiChatDeleteLine />
+              </button>
             ) : null}
           </div>
         ))}
