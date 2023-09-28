@@ -1,39 +1,58 @@
 // import style from './Form.module.css'
-import { useRef } from 'react'
-import emailjs from '@emailjs/browser';
-import style from './Form.module.css'
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import style from "./Form.module.css";
+import img from './Imagem.png';
 
 const Form = () => {
-  const form = useRef()
+  const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_81yo8af', 'template_0o7t7h3', form.current, 'DxI3gho62aUgl7W4f')
-      .then((result) => {
+    emailjs
+      .sendForm(
+        "service_81yo8af",
+        "template_0o7t7h3",
+        form.current,
+        "DxI3gho62aUgl7W4f"
+      )
+      .then(
+        (result) => {
           console.log(result.text);
-      }, (error) => {
+        },
+        (error) => {
           console.log(error.text);
-      });
-      e.target.reset()
+        }
+      );
+    e.target.reset();
   };
   return (
-  <div className={style.form}>
-    <h2>Форма для записи</h2>
-    <form className={style.form__items} ref={form}  onSubmit={sendEmail}>
-      <h4>ФИО</h4>
-      <input type="text"  name='user_name' required />
-      <h4>Email</h4>
+    <div className={style.form}>
+      <form className={style.form__items} ref={form} onSubmit={sendEmail}>
+        <div className={style.form_container}>
+          <div className={style.form_inputs}>
+            <h2>Форма для записи</h2>
+            <div>
+              <input className={style.input_form_name} placeholder="Name" type="text" />
+            </div>
+            <div>
+              <input className={style.input_form_email} placeholder="Email" type="text" />
+            </div>
+            <div>
+              <input className={style.input_form_telephone} placeholder="Telephone" type="text" />
+            </div>
+            <div className={style.form_btn}>
+              <button className={style.btn}>Записаться</button>
+            </div>
+          </div>
+          <div className={style.form_img}>
+            <img src={img} alt="error" />
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-      <input type="email" name='user_email'  required/>
-      <h4>Телефон</h4>
-
-      <input type="phone"  name='user_phone'  required/>
-      <button type="submit">Отправить</button>
-    </form>
-  </div>
-
-  )
-}
-
-export default Form
+export default Form;
