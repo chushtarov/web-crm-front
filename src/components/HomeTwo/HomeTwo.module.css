@@ -1,52 +1,117 @@
 .home {
-    background-color: #1f1f1f;
+  background-color: #1f1f1f;
 }
 .home_container {
-    max-width: 1140px;
-    margin: 0 auto;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 .home_content {
-    padding: 100px 0;
-    color: #FFF;
+  padding: 100px 0;
+  color: #fff;
 }
 .block_content_text {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
 }
 .block_content_text_2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .home_h1 {
-    margin-bottom: 40px;
-    font-weight: 700;
-    font-family: 'Onest',Arial,sans-serif;
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-family: "Onest", Arial, sans-serif;
 }
 .home_h2 {
-    margin-bottom: 50px;
-    font-size: 24px;
-    font-weight: 700;
-    font-family: 'Onest',Arial,sans-serif;
+  margin-bottom: 50px;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Onest", Arial, sans-serif;
 }
 .home_h3_content {
-    font-family: 'Onest',Arial,sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    font-weight: 700;
+  font-family: "Onest", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.home_h33_content {
+  font-family: "Onest", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  /* margin-left: -183px;  */
 }
 .home_p_content {
-    margin-top: 10px;
-    font-size: 16px;
-    font-family: 'Onest',Arial,sans-serif;
-    font-weight: 400;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Onest", Arial, sans-serif;
+  font-weight: 400;
 }
 .home_help {
-    margin-right: 183px;
-    margin-top: 10px;
-    font-size: 16px;
-    font-family: 'Onest',Arial,sans-serif;
-    font-weight: 400;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Onest", Arial, sans-serif;
+  font-weight: 400;
+}
+.last_content {
+  margin-right: 172px;
+}
+
+/* Адаптив */
+
+@media screen and (max-width: 940px) {
+  .home_h1 {
+    text-align: center;
+  }
+  .home_h2 {
+    text-align: center;
+  }
+  .block_content_text {
+    display: flex;
+    flex-direction: column;
+  }
+  .home_h3_content {
+    text-align: center;
+  }
+  .home_p_content {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .block_content_text_2 {
+    display: flex;
+    flex-direction: column;
+  }
+  .home_h33_content {
+    text-align: center;
+  }
+  .last_content {
+    margin: auto;
+  }
+}
+@media screen and (max-width: 532px) {
+  .home_h1 {
+    text-align: center;
+    padding: 0 3px;
+  }
+  .home_h2 {
+    text-align: center;
+    padding: 0 5px;
+  }
+  .block_content_text {
+    display: flex;
+    flex-direction: column;
+  }
+  .home_h3_content {
+    text-align: center;
+  }
+  .home_p_content {
+    text-align: center;
+  }
+  .home_h33_content {
+    text-align: center;
+  }
+  .last_content {
+    margin: auto;
+  }
 }

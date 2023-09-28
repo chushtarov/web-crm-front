@@ -24,8 +24,8 @@ const HomeTwo = () => {
                        <h3 className={style.home_h3_content}>Все онлайн-встречи сохраняем в записи —</h3>
                         <p className={style.home_p_content}>можно пересматривать</p>
                        </div>
-                       <div>
-                        <h3 className={style.home_h3_content}>Наставники и кураторы</h3>
+                       <div className={style.last_content}>
+                        <h3 className={style.home_h33_content}>Наставники и кураторы</h3>
                         <p className={style.home_help}>помогают в учебном процессе</p>
                        </div>
                     </div>

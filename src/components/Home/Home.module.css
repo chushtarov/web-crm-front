@@ -88,8 +88,7 @@
     margin-top: 60px;
     cursor: pointer;
     transition: 0.4s;
-    margin-bottom: 30px;
-    
+    margin-bottom: 30px;   
 }
 .home_btn:hover {
     background-color: #164ebf;
@@ -98,3 +97,59 @@
     font-size: 18px;
     color: #FFF;
 }
+
+
+/* Адаптив */
+
+
+@media screen and (max-width: 500px) {
+    .home_frontend {
+        font-size: 40px;
+    }
+    .glav_img {
+        display: none;
+    }
+}
+@media screen and (max-width: 373px) {
+    .home_btn {
+        width: 200px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .home_frontend {
+        font-size: 40px;
+    }
+    .home__well {
+        text-align: center;
+    }
+    .home_profes {
+        text-align: center;
+    }
+    .home_frontend {
+        text-align: center;
+    }
+    .home_info {
+        text-align: center;
+        padding: 0 10px;
+    }
+    .btn_div {
+        display: flex;
+        justify-content: center;
+    }
+    .home_garanty {
+        display: none;
+    }
+    .akcia_img {
+        display: none;
+    }
+    .akcia {
+        display: none;
+    }
+    .home_img_content {
+        display: none;
+    } 
+    .glav_img {
+        display: none;
+    }   
+}
+
