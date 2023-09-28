@@ -40,7 +40,7 @@ const Form = () => {
               <input className={style.input_form_email} placeholder="Email" type="text" />
             </div>
             <div>
-              <input className={style.input_form_telephone} placeholder="Telephone" type="text" />
+              <input className={style.input_form_telephone} placeholder="Phone" type="text" />
             </div>
             <div className={style.form_btn}>
               <button className={style.btn}>Записаться</button>

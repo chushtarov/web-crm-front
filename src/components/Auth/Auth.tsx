@@ -1,14 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
 import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
-import { AppDispatch, RootState } from "../../app/store";
-import {useEffect} from 'react'
+import { RootState } from "../../app/store";
+import { useSelector } from "react-redux";
 
 const Auth = () => {
-const admin = useSelector((state: RootState) => state.signInSlice.user)
-const dispatch = useDispatch<AppDispatch>()
-
-// useEffect(dispatch())
+  const admin = useSelector((state: RootState) => state.usersSlice.oneUser);
 
   return (
     <div className={style.out_header}>
@@ -31,9 +27,9 @@ const dispatch = useDispatch<AppDispatch>()
               </Link>
             </li>
             <li>
-              <Link to={"/listStud"} className={style.out_a}>
+               {admin.isAdmin === true ? <Link to={"/listStud"} className={style.out_a}>
                 Студенты
-              </Link>
+              </Link> : null}
             </li>
           </ul>
         </nav>

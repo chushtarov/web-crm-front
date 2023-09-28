@@ -20,7 +20,7 @@ const Tasks = () => {
   return (
     <div className={style.tasks}>
       <div className={!open ? style.item__task2 : style.item__task}>
-        <button className={open ? style.button2 : style.button}><Link className={style.Link}to="https://www.youtube.com/results?search_query=html">1. HTML. CSS-первое касание. Figma. Адаптивная Верстка</Link></button>
+        <button className={open ? style.button : style.button2}><Link className={open ? style.Link : style.Link2}to="https://www.youtube.com/results?search_query=html">1. HTML. CSS-первое касание. Figma. Адаптивная Верстка</Link></button>
         {user.isAdmin ? (
           <button className={style.button} onClick={() => setOpen(!open)}>
             {open ? <TbLockOpen /> : <TbLock />}
