@@ -28,6 +28,7 @@ export const fetchChats = createAsyncThunk("chat/fetchChats", async () => {
 
 });
 
+
 const chatSlice = createSlice({
   name: "chat",
   initialState,
