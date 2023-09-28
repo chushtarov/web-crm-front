@@ -30,6 +30,7 @@ export const fetchMessages = createAsyncThunk(
   async (chatId: string, { getState }) => {
     const state = getState() as RootState;
     const token = state.signInSlice.token;
+    
 
     const response = await axios.get(
       `http://localhost:3000/api/chats/${chatId}/messages`,
@@ -38,7 +39,7 @@ export const fetchMessages = createAsyncThunk(
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
-      }
+    }
     );
     return response.data;
   }
@@ -129,12 +130,9 @@ const messageSlice = createSlice({
       .addCase(deleteMessage.fulfilled, (state, action) => {
         state.status = "succeeded";
         const { messageId } = action.payload;
-        const messageIndex = state.messages.findIndex(
-            (message) => message.id === messageId
-          );
-          if (messageIndex !== -1) {
-            state.messages.splice(messageIndex, 1);
-          }
+        state.messages = state.messages.filter(
+          (message) => message._id !== messageId
+        );
       })
       .addCase(deleteMessage.rejected, (state, action) => {
         state.status = "failed";

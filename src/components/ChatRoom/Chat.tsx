@@ -24,7 +24,7 @@ function ChatRoom() {
   const [messageInput, setMessageInput] = useState("");
   const users = useSelector((state: RootState) => state.usersSlice.users);
   const [socket, setSocket] = useState<Socket | null>(null);
-
+  console.log(messages);
   useEffect(() => {
     if (chatId) {
       dispatch(fetchMessages(chatId));
@@ -41,11 +41,12 @@ function ChatRoom() {
 
       newSocket.on("chatMessage", (message) => {
         dispatch(sendMessage(message));
+    console.log("first")
+
       });
 
       newSocket.on("messageDeleted", (data) => {
         const { chatId, messageId } = data;
-        // Обновите состояние (Redux store) и удалите сообщение по messageId
         dispatch(deleteMessage({ chatId, messageId }));
       });
 
@@ -57,25 +58,26 @@ function ChatRoom() {
         socket.disconnect();
       }
     };
-  }, [chatId, dispatch, socket]);
+  }, [chatId]);
 
   const sendMessageHandler = () => {
-    if (messageInput.trim() && userOne) {
+    if (messageInput.trim() && userOne && socket) {
       const newMessage = {
         text: messageInput,
         sender: userOne._id,
         chat: chatId,
       };
-      socket?.emit("newMessage", newMessage);
+
+      socket?.emit("newMessage", newMessage); // Обновление Redux-состояния
     }
 
     setMessageInput("");
-    
   };
 
   const deleteMessageHandler = (messageId: string) => {
+    dispatch(deleteMessage({ chatId, messageId }));
+
     if (userOne && chatId) {
-      // Отправить событие на сервер для удаления сообщения
       socket?.emit("deleteMessage", { chatId, messageId });
     }
   };
@@ -89,15 +91,19 @@ function ChatRoom() {
     return color;
   }
 
- const renderDateLabel = (message, index) => {
-    if (index === 0 || moment(messages[index - 1].timestamp, 'HH:mm').day() !== moment(message.timestamp, 'HH:mm').day()) {
+  const renderDateLabel = (message, index) => {
+    if (
+      index === 0 ||
+      moment(messages[index - 1].timestamp, "HH:mm").day() !==
+        moment(message.timestamp, "HH:mm").day()
+    ) {
       return (
         <div className={styles.messageDay}>
-          {moment(message.timestamp, 'HH:mm').calendar(null, {
-            sameDay: '[Сегодня]',
-            lastDay: '[Вчера]',
-            lastWeek: 'DD.MM.YYYY',
-            sameElse: 'DD.MM.YYYY',
+          {moment(message.timestamp, "HH:mm").calendar(null, {
+            sameDay: "[Сегодня]",
+            lastDay: "[Вчера]",
+            lastWeek: "DD.MM.YYYY",
+            sameElse: "DD.MM.YYYY",
           })}
         </div>
       );
@@ -107,17 +113,17 @@ function ChatRoom() {
 
   const formatDate = (timestamp) => {
     const momentTimestamp = moment(timestamp, "HH:mm");
-  
+
     const now = moment();
-    const today = moment().startOf('day');
-    const yesterday = moment().subtract(1, 'days').startOf('day');
-  
-    if (momentTimestamp.isSame(now, 'day')) {
-      return momentTimestamp.format('HH:mm');
-    } else if (momentTimestamp.isSame(yesterday, 'day')) {
-      return `вчера, ${momentTimestamp.format('HH:mm')}`;
+    const today = moment().startOf("day");
+    const yesterday = moment().subtract(1, "days").startOf("day");
+
+    if (momentTimestamp.isSame(now, "day")) {
+      return momentTimestamp.format("HH:mm");
+    } else if (momentTimestamp.isSame(yesterday, "day")) {
+      return `вчера, ${momentTimestamp.format("HH:mm")}`;
     } else {
-      return momentTimestamp.format('DD.MM.YYYY, HH:mm');
+      return momentTimestamp.format("DD.MM.YYYY, HH:mm");
     }
   };
 
@@ -131,7 +137,7 @@ function ChatRoom() {
             {users.map((user) =>
               user._id === message.sender ? (
                 <div
-                className={styles.userName}
+                  className={styles.userName}
                   key={user._id}
                   style={{ color: getUsernameColor(user.login) }}
                 >
