@@ -83,11 +83,6 @@ const Header = () => {
             <button className={style.ul__menu}><Link className={style.ul__link} to="/info">Экзамен</Link></button>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/"}>
-              О нас
-            </Link>
-          </li>
-          <li>
             <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
@@ -98,13 +93,13 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/contact"}>
-              Контакты
+            <Link className={style.ul__link} to={"/"}>
+              О нас
             </Link>
           </li>
-          <li className={style.ul__link}>
-            <Link className={style.ul__menu} to={`/chat/${chatId}`}>
-              Чат
+          <li>
+            <Link className={style.ul__link} to={"/contact"}>
+              Контакты
             </Link>
           </li>
         </ul>

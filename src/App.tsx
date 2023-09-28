@@ -22,6 +22,7 @@ import { RootState } from "./app/store";
 import Form from "./components/Form/Form";
 
 import Tasks from "./components/Tasks/Tasks";
+import Group from "./components/Group/Group";
 
 function App() {
   const token = useSelector((state: RootState) => state.signInSlice.token);
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path={"/Chat"} element={<Profil />} />
         <Route path={"/"} element={<Slider />} />
+        <Route path={"/group"} element={<Group />} />
         <Route path={"/login"} element={<SignIn />} />
         {/* <Route path="/" element={<ChatList />} /> */}
         <Route path={`/chat/:chatId`} element={<ChatRoom />} />
