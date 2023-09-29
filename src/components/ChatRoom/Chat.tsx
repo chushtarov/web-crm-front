@@ -1,5 +1,5 @@
 // ChatRoom.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -28,9 +28,14 @@ function ChatRoom() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [showUserList, setShowUserList] = useState(false); // Состояние для управления видимостью списка пользователей
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const messagesContainerRef = useRef(null);
+  const chatUsers = chat.chats
+    ?.find((chat) => chat._id === chatId)
+    ?.participants.map((participant) =>
+      users.find((user) => user._id === participant)
+    );
 
-  console.log(chatId);
-  console.log(selectedUsers);
+  console.log(chatUsers);
   useEffect(() => {
     if (chatId) {
       dispatch(fetchMessages(chatId));
@@ -47,15 +52,13 @@ function ChatRoom() {
 
       newSocket.on("chatMessage", (message) => {
         dispatch(sendMessage(message));
-        console.log("first");
       });
 
       newSocket.on("messageDeleted", (data) => {
         const { chatId, messageId } = data;
         dispatch(deleteMessage({ chatId, messageId }));
       });
-
-      setSocket(newSocket); // Сохранение экземпляра Socket в состоянии
+      setSocket(newSocket);
     }
 
     return () => {
@@ -65,18 +68,24 @@ function ChatRoom() {
     };
   }, [chatId]);
 
-  const sendMessageHandler = () => {
+  const sendMessageHandler = (e) => {
+    e.preventDefault();
     if (messageInput.trim() && userOne && socket) {
       const newMessage = {
         text: messageInput,
         sender: userOne._id,
         chat: chatId,
       };
+      socket?.emit("newMessage", newMessage);
+      setMessageInput("");
 
-      socket?.emit("newMessage", newMessage); // Обновление Redux-состояния
+      setTimeout(() => {
+        if (messagesContainerRef.current) {
+          messagesContainerRef.current.scrollTop =
+            messagesContainerRef.current.scrollHeight;
+        }
+      }, 200);
     }
-
-    setMessageInput("");
   };
 
   const deleteMessageHandler = (messageId: string) => {
@@ -97,16 +106,15 @@ function ChatRoom() {
   }
 
   const openUserList = () => {
-    setShowUserList(true);
+    setShowUserList(!showUserList);
     setSelectedUsers([]);
   };
 
   const addUserToChat = () => {
     if (selectedUsers.length > 0) {
-      // Выполните запрос к серверу для добавления выбранных пользователей в чат
       dispatch(addParticipant({ chatId, userId: [...selectedUsers] }));
-      setShowUserList(false); // Скройте список пользователей после добавления
-      setSelectedUsers([]); // Сбросьте выбранных пользователей
+      setShowUserList(false);
+      setSelectedUsers([]);
     }
   };
 
@@ -158,72 +166,93 @@ function ChatRoom() {
     <div className={styles.chatRoom}>
       <div className={styles.chatHeader}>
         Chat Room {chat.chats[0]?.name}
-        <button className={styles.addUserButton} onClick={openUserList}>
-          <MdPersonAddAlt1 />
-        </button>
-        {showUserList && (
-          <div className={styles.userList}>
-            <h2>Все юзеры</h2>
-            <ul>
-              {users.map((user) => (
-                <li key={user._id}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      value={user._id}
-                      checked={selectedUsers.includes(user._id)}
-                      onChange={() => toggleUserSelection(user._id)}
-                    />
-                    {user.login}
-                  </label>
-                </li>
-              ))}
-            </ul>
-            <button onClick={addUserToChat}>Добавить в чат</button>
-          </div>
-        )}
-      </div>
-      <div className={styles.chatMessages}>
-        {messages.map((message, index) => (
-          <div key={message.id} className={styles.message}>
-            {renderDateLabel(message, index)}
-            {users.map((user) =>
-              user._id === message.sender ? (
-                <div
-                  className={styles.userName}
-                  key={user._id}
-                  style={{ color: getUsernameColor(user.login) }}
-                >
-                  {user.login}
-                </div>
-              ) : null
-            )}
-            <div className={styles.messageText}>{message.text}</div>
-            <div className={styles.messageTime}>
-              {formatDate(message.timestamp)}
-            </div>
-            {userOne && userOne._id === message.sender ? (
-              <button
-                className={styles.deleteButton}
-                onClick={() => deleteMessageHandler(message._id)}
-              >
-                <RiChatDeleteLine />
+        <div className={styles.addUsersBtn}>
+          {userOne.isAdmin === true ? (
+            <button className={styles.addUserButton} onClick={openUserList}>
+              <MdPersonAddAlt1 />
+            </button>
+          ) : null}
+
+          {showUserList && (
+            <div className={styles.userListContainer}>
+              <h2>Все юзеры</h2>
+              <div className={styles.userList}>
+                <ul>
+                  {users.map((user) => (
+                    <li key={user._id}>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value={user._id}
+                          checked={selectedUsers.includes(user._id)}
+                          onChange={() => toggleUserSelection(user._id)}
+                          disabled={chatUsers
+                            .map((cu) => cu._id)
+                            .includes(user._id)}
+                        />
+                        {user.login}{" "}
+                        {chatUsers.map((cu) => cu._id).includes(user._id) &&
+                          "(Добавлен)"}
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <button className={styles.userAdd} onClick={addUserToChat}>
+                Добавить в чат
               </button>
-            ) : null}
-          </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className={styles.chatMessages} ref={messagesContainerRef}>
+        {messages.map((message, index) => (
+          <>
+            <div className={styles.dateDay}>
+              {renderDateLabel(message, index)}
+            </div>
+
+            <div key={message.id} className={styles.message}>
+              {users.map((user) =>
+                user._id === message.sender ? (
+                  <div
+                    className={styles.userName}
+                    key={user._id}
+                    style={{ color: getUsernameColor(user.login) }}
+                  >
+                    {user.login}
+                  </div>
+                ) : null
+              )}
+              <div className={styles.messageText}>{message.text}</div>
+              <div className={styles.messageTime}>
+                {formatDate(message.timestamp)}
+              </div>
+              {userOne && userOne._id === message.sender ? (
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => deleteMessageHandler(message._id)}
+                >
+                  <RiChatDeleteLine />
+                </button>
+              ) : null}
+            </div>
+          </>
         ))}
       </div>
-      <div className={styles.chatInput}>
-        <input
-          type="text"
-          placeholder="Напишите сообщение..."
-          value={messageInput}
-          onChange={(e) => setMessageInput(e.target.value)}
-        />
-        <button onClick={sendMessageHandler} className={styles.button}>
-          Отправить
-        </button>
-      </div>
+      <form onSubmit={sendMessageHandler}>
+        <div className={styles.chatInput}>
+          <input
+            type="text"
+            placeholder="Напишите сообщение..."
+            value={messageInput}
+            onChange={(e) => setMessageInput(e.target.value)}
+          />
+          <button type="submit" className={styles.button}>
+            Отправить
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
