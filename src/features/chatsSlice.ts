@@ -6,7 +6,7 @@ import { RootState } from "../app/store";
 interface Chat {
   _id: string;
   name: string;
-  participants: []
+  participants: string[]
 }
 
 interface ChatState {
@@ -28,6 +28,17 @@ export const fetchChats = createAsyncThunk("chat/fetchChats", async () => {
 
 });
 
+export const addParticipant = createAsyncThunk(
+  "chat/addParticipant",
+  async ({ chatId, userId }: { chatId: string; userId: string }) => {
+    const response = await axios.post(
+      `http://localhost:3000/api/chats/${chatId}/participants`,
+      { userId }
+    );
+    return response.data;
+  }
+);
+
 
 const chatSlice = createSlice({
   name: "chat",
@@ -43,6 +54,19 @@ const chatSlice = createSlice({
         state.chats = action.payload;
       })
       .addCase(fetchChats.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || null;
+      })
+      .addCase(addParticipant.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        // Обновите информацию о чате после успешного добавления пользователя
+        const chatId = action.payload._id;
+        const updatedChats = state.chats.map((chat) =>
+          chat._id === chatId ? action.payload : chat
+        );
+        state.chats = updatedChats;
+      })
+      .addCase(addParticipant.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || null;
       });

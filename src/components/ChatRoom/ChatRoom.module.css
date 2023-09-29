@@ -10,6 +10,8 @@
     background-color: #333;
     color: #fff;
     padding: 16px;
+    display: flex;
+    justify-content: space-between;
   }
   
   .userName {
@@ -45,6 +47,14 @@
   .deleteButton:hover {
     
     color: rgb(120, 118, 118);
+  }
+
+  .addUserButton {
+    border: none;
+    background-color: transparent;
+    color: rgb(251, 251, 251);
+    font-size: 20px;
+    cursor: pointer;
   }
   
   .messageText {

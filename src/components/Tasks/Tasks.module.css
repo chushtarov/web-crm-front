@@ -11,6 +11,13 @@
     color: black;
     list-style-type: none;
 }
+
+.Link2{
+ 
+  list-style-type: none;
+  cursor: not-allowed;
+  color: rgb(107, 107, 108);
+}
 .item__task {
   width: 100%;
   display: flex;

@@ -31,17 +31,8 @@ const Header = () => {
     dispatch(fetchChats());
   }, [ token, dispatch]);
 
-  const getChatIdForUser = (userId) => {
-    const chat = chats.find((chat) => chat.participants.includes(userId));
 
-    return chat ? chat._id : null;
-  };
-
-
-  const userId = userOne ? userOne._id : null;
-  const chatId = userId ? getChatIdForUser(userId) : null;
-
-
+ 
   const [openProf, setOpenProf] = useState(false);
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
@@ -83,11 +74,6 @@ const Header = () => {
             <button className={style.ul__menu}><Link className={style.ul__link} to="/info">Экзамен</Link></button>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/about"}>
-              О нас
-            </Link>
-          </li>
-          <li>
             <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
@@ -102,11 +88,7 @@ const Header = () => {
               Контакты
             </Link>
           </li>
-          <li className={style.ul__link}>
-            <Link className={style.ul__menu} to={`/chat/${chatId}`}>
-              Чат
-            </Link>
-          </li>
+
         </ul>
 
       </div>

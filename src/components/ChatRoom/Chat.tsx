@@ -7,10 +7,12 @@ import {
   sendMessage,
   deleteMessage,
 } from "../../features/messagesSlice";
+import { addParticipant } from "../../features/chatsSlice";
 import { AppDispatch, RootState } from "../../app/store";
 import { fetchUsers, oneUser } from "../../features/usersSlice";
 import styles from "./ChatRoom.module.css";
 import { RiChatDeleteLine } from "react-icons/ri";
+import { MdPersonAddAlt1 } from "react-icons/md";
 import { io, Socket } from "socket.io-client";
 import moment from "moment-timezone";
 moment.tz.setDefault("Europe/Moscow");
@@ -24,7 +26,11 @@ function ChatRoom() {
   const [messageInput, setMessageInput] = useState("");
   const users = useSelector((state: RootState) => state.usersSlice.users);
   const [socket, setSocket] = useState<Socket | null>(null);
-  console.log(messages);
+  const [showUserList, setShowUserList] = useState(false); // Состояние для управления видимостью списка пользователей
+  const [selectedUsers, setSelectedUsers] = useState([]);
+
+  console.log(chatId);
+  console.log(selectedUsers);
   useEffect(() => {
     if (chatId) {
       dispatch(fetchMessages(chatId));
@@ -41,8 +47,7 @@ function ChatRoom() {
 
       newSocket.on("chatMessage", (message) => {
         dispatch(sendMessage(message));
-    console.log("first")
-
+        console.log("first");
       });
 
       newSocket.on("messageDeleted", (data) => {
@@ -91,6 +96,28 @@ function ChatRoom() {
     return color;
   }
 
+  const openUserList = () => {
+    setShowUserList(true);
+    setSelectedUsers([]);
+  };
+
+  const addUserToChat = () => {
+    if (selectedUsers.length > 0) {
+      // Выполните запрос к серверу для добавления выбранных пользователей в чат
+      dispatch(addParticipant({ chatId, userId: [...selectedUsers] }));
+      setShowUserList(false); // Скройте список пользователей после добавления
+      setSelectedUsers([]); // Сбросьте выбранных пользователей
+    }
+  };
+
+  const toggleUserSelection = (userId) => {
+    if (selectedUsers.includes(userId)) {
+      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    } else {
+      setSelectedUsers([...selectedUsers, userId]);
+    }
+  };
+
   const renderDateLabel = (message, index) => {
     if (
       index === 0 ||
@@ -129,7 +156,33 @@ function ChatRoom() {
 
   return (
     <div className={styles.chatRoom}>
-      <div className={styles.chatHeader}>Chat Room {chat.chats[0]?.name}</div>
+      <div className={styles.chatHeader}>
+        Chat Room {chat.chats[0]?.name}
+        <button className={styles.addUserButton} onClick={openUserList}>
+          <MdPersonAddAlt1 />
+        </button>
+        {showUserList && (
+          <div className={styles.userList}>
+            <h2>Все юзеры</h2>
+            <ul>
+              {users.map((user) => (
+                <li key={user._id}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={user._id}
+                      checked={selectedUsers.includes(user._id)}
+                      onChange={() => toggleUserSelection(user._id)}
+                    />
+                    {user.login}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            <button onClick={addUserToChat}>Добавить в чат</button>
+          </div>
+        )}
+      </div>
       <div className={styles.chatMessages}>
         {messages.map((message, index) => (
           <div key={message.id} className={styles.message}>
