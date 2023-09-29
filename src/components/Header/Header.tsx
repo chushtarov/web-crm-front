@@ -74,11 +74,6 @@ const Header = () => {
             <button className={style.ul__menu}><Link className={style.ul__link} to="/info">Экзамен</Link></button>
           </li>
           <li>
-            <Link className={style.ul__link} to={"/about"}>
-              О нас
-            </Link>
-          </li>
-          <li>
             <Link className={style.ul__link} to={"/student"}>
               Выпускники
             </Link>
@@ -93,6 +88,7 @@ const Header = () => {
               Контакты
             </Link>
           </li>
+
         </ul>
 
       </div>

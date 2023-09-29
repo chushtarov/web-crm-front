@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
 import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
-import { AppDispatch, RootState } from "../../app/store";
-import {useEffect} from 'react'
+import { RootState, AppDispatch } from "../../app/store";
+import { useSelector, useDispatch } from "react-redux";
 
 const Auth = () => {
-const admin = useSelector((state: RootState) => state.signInSlice.user)
+
 const dispatch = useDispatch<AppDispatch>()
 const userOne = useSelector((state: RootState) => state.usersSlice.oneUser);
 const chats = useSelector((state: RootState) => state.chat.chats);
@@ -24,6 +23,9 @@ const chatId = userId ? getChatIdForUser(userId) : null;
 
 
 // useEffect(dispatch())
+
+  const admin = useSelector((state: RootState) => state.usersSlice.oneUser);
+
 
   return (
     <div className={style.out_header}>
@@ -46,9 +48,9 @@ const chatId = userId ? getChatIdForUser(userId) : null;
               </Link>
             </li>
             <li>
-              <Link to={"/listStud"} className={style.out_a}>
+               {admin.isAdmin === true ? <Link to={"/listStud"} className={style.out_a}>
                 Студенты
-              </Link>
+              </Link> : null}
             </li>
           </ul>
         </nav>

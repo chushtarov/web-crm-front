@@ -4,7 +4,6 @@ import usersSlice from "./usersSlice";
 import chatsSlice from "./chatsSlice";
 import messagesSlice from "./messagesSlice";
 import cardSlicer from "./cardSlicer";
-import signUpSlice from "./signUpSlice";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
   chat: chatsSlice,
   messages: messagesSlice,
   cardSlicer: cardSlicer,
-  signUpSlice: signUpSlice
 });
 
 export default rootReducer;
