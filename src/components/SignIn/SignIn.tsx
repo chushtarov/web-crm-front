@@ -5,18 +5,20 @@ import { AppDispatch, RootState } from "../../app/store";
 import style from "./SignIn.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
+import { ImCheckmark } from "react-icons/im";
 
 const SignIn = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [blur, setBlur] = useState(false);
-
+  const [btn, setBtn] = useState(false);
   const token = useSelector((state: RootState) => state.signInSlice.token);
   const error = useSelector((state: RootState) => state.signInSlice.error) as
     | string
     | null;
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  console.log(error)
 
   const handleSingUp = (e: FormEvent) => {
     e.preventDefault();
@@ -57,26 +59,26 @@ const SignIn = () => {
           <h1 className={style.h1}>Авторизация</h1>
           <form onSubmit={handleSingUp}>
             {error ? <div className={style.err_log}>{error}</div> : null}
-            <h4 className={style.h4}>Имя пользователя</h4>
             <input
+            placeholder="name"
               onBlur={hendleBlur}
-              className={blur && !login ? style.input__err : style.input}
+              className={blur && !login ? style.input__errr : style.inputt}
               onChange={handleSetName}
               value={login}
               type="text"
               name=""
               id=""
             />
-            <h4 className={style.h4}>Пароль</h4>
             <input
+              placeholder="password"
               onBlur={hendleBlur}
               className={blur && !password ? style.input__err : style.input}
               onChange={handleSetPass}
               value={password}
               type="password"
             />
-            <button type="submit" className={style.button}>
-              Login
+            <button onClick={() => setBtn(!btn)} type="submit" className={style.button}>
+              Авторизоваться
             </button>
           </form>
         </div>
