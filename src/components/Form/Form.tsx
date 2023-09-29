@@ -34,13 +34,13 @@ const Form = () => {
           <div className={style.form_inputs}>
             <h2>Форма для записи</h2>
             <div>
-              <input className={style.input_form_name} placeholder="Name" type="text" />
+              <input className={style.input_form_name} name="user_name" placeholder="Name" type="text" />
             </div>
             <div>
-              <input className={style.input_form_email} placeholder="Email" type="text" />
+              <input className={style.input_form_email} name="user_email" placeholder="Email" type="email" />
             </div>
             <div>
-              <input className={style.input_form_telephone} placeholder="Phone" type="text" />
+              <input className={style.input_form_telephone} name="user_phone" placeholder="Phone" type="phone" />
             </div>
             <div className={style.form_btn}>
               <button className={style.btn}>Записаться</button>
