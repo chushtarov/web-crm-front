@@ -1,7 +1,7 @@
 import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
-import { RootState } from "../../app/store";
-import { useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../app/store";
+import { useSelector, useDispatch } from "react-redux";
 
 const Auth = () => {
 
