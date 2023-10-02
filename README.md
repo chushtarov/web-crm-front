@@ -1,27 +1,21 @@
-# React + TypeScript + Vite
+# Web CRM Front
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Краткое описание проекта
+**Web CRM Front** - это клиентская часть CRM-системы с чатом, разработанной для обеспечения управления клиентской информацией и внутренними процессами. Приложение обеспечивает надежное взаимодействие с серверной частью и позволяет пользователям взаимодействовать с данными и обмениваться сообщениями.
 
-Currently, two official plugins are available:
+## Использованный стек
+Проект Web CRM Front использует следующий технологический стек:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React и TypeScript**: Используются для создания клиентской части приложения и обеспечения интерактивности.
+- **Redux**: Для управления состоянием приложения и обеспечения эффективного взаимодействия с сервером.
+- **HTML и CSS modules**: Для создания веб-интерфейса и стилей.
+- **REST API**: Для взаимодействия с серверной частью приложения.
+- **WebSocket.io**: Для обеспечения функциональности чата и обмена сообщениями.
 
-## Expanding the ESLint configuration
+## Инструкция по запуску проекта
+Для запуска клиентской части проекта "Web CRM Front," выполните следующие шаги:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. **Склонируйте репозиторий**: git clone https://github.com/chushtarov/web-crm-front.git
+2. **Перейдите в директорию проекта**: cd web-crm-front
+3. **Установите зависимости**: npm install
+4. **Запустите приложение**: npm run dev
