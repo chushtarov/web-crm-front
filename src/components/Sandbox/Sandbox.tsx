@@ -2,6 +2,8 @@ import CssEditor from "./Editor/CssEditor";
 import HtmlEditor from "./Editor/HtmlEditor";
 import JsEditor from "./Editor/JsEditor";
 import style from "./Sandbox.module.css";
+import Webcam from "react-webcam"
+import Draggable from "react-draggable"
 import { useState, useMemo } from "react";
 import {BsFillCameraVideoFill, BsFillCameraVideoOffFill} from 'react-icons/bs'
 const Sandbox = () => {
@@ -73,6 +75,25 @@ const document = useMemo(() => {
         <button  onClick={() => setCamera(!camera)} className={style.camera}>
           {camera ? <BsFillCameraVideoFill fill="#fff" size={23}/> : <BsFillCameraVideoOffFill fill="#fff" size={23}/>}
         </button>
+
+        {
+          camera ? 
+        <Draggable>
+            <Webcam className={style.camera1}
+          audio={false}
+          width={300}
+          height={300}
+          videoConstraints={{
+            width: 300,
+            height: 300,
+            facingMode: "user"
+          }}
+          />
+        </Draggable>
+          : 
+          null
+        }
+      
 
         </div>
         <div className={style.body__code}>
